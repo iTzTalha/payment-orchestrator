@@ -63,7 +63,7 @@ No database, broker, or cache to install — H2 runs in-memory and the connector
 ### 1. Clone and build
 
 ```bash
-git clone <repo-url> orchestrator
+git clone https://github.com/iTzTalha/payment-orchestrator.git orchestrator
 cd orchestrator
 ./mvnw -DskipTests package        # Linux / macOS
 mvnw.cmd -DskipTests package      # Windows
