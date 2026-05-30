@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:orchestrator-test;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+orchestrator:
+  retry:
+    initial-backoff-ms: 1
+    backoff-multiplier: 1.0
+    max-backoff-ms: 2
+
+  idempotency:
+    # "-" is Spring's documented disable token for @Scheduled cron expressions;
+    # keeps the cleanup job bean wired without firing during integration tests.
+    cleanup-cron: "-"

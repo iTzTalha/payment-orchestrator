@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: orchestrator
+
+  mvc:
+    problemdetails:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:orchestrator;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+orchestrator:
+  routing:
+    rules:
+      CARD: [stripe, razorpay]
+      UPI: [razorpay, stripe]
+
+  retry:
+    max-attempts: 3
+    initial-backoff-ms: 200
+    backoff-multiplier: 2.0
+    max-backoff-ms: 2000
+    failover-on-non-retryable: true
+
+  idempotency:
+    ttl: PT24H
+    cleanup-cron: "0 0 * * * *" # every hour
